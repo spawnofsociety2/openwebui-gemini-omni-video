@@ -1,5 +1,7 @@
 # OpenWebUI Gemini Omni Video Generator
 
+![OpenWebUI Gemini Omni Video Generator Demo](assets/OpenWebUI_VideoGEN.jpg)
+
 Generate hyper-realistic videos directly within [OpenWebUI](https://openwebui.com/) using Google Vertex AI's new **Gemini Omni Flash Preview** model!
 
 This tool takes your prompt, calls the Vertex AI API to generate a high-quality video, downloads it directly to OpenWebUI's static cache, and embeds a gorgeous, fully responsive native HTML5 video player right into your chat stream. 
