@@ -18,7 +18,7 @@ import urllib.request
 class Tools:
     class Valves(BaseModel):
         PROJECT_ID: str = Field(
-            default="my-vertex-gemini-501614", 
+            default="your-google-cloud-project-id", 
             description="Google Cloud Project ID"
         )
         LOCATION_ID: str = Field(
