@@ -8,6 +8,8 @@ This tool takes your prompt, calls the Vertex AI API to generate a high-quality 
 
 ## Features
 ✨ **Native Chat Embeds**: Uses `HTMLResponse` to display the video directly inline so you don't have to leave the chat.  
+✨ **Image-to-Video**: Upload reference images directly in the OpenWebUI chat, or paste image URLs, and Omni Flash will use them to generate videos!  
+✨ **Video Editing**: Edit existing videos! Upload a video or provide a Google Cloud Storage (`gs://`) link, and ask Omni to edit the video with a prompt.  
 📏 **Dynamic Resizing**: Built-in `postMessage` Javascript script seamlessly communicates with the OpenWebUI iframe sandboxing to ensure the player resizes perfectly to a 16:9 aspect ratio without ugly scrollbars or getting cut off.  
 ☁️ **Vertex AI Ready**: Uses Application Default Credentials (ADC) to securely connect to your Google Cloud Project.   
 📦 **Zero-Touch Installation**: The required `google-genai`, `google-auth`, and `google-cloud-storage` SDKs are automatically installed by OpenWebUI upon importing the tool.
@@ -60,3 +62,15 @@ Since OpenWebUI runs inside an isolated container, that container needs to be ha
 ## OpenWebUI Hub
 You can also find and easily import this tool directly from the OpenWebUI Hub:
 [Gemini Omni Video on OpenWebUI Hub](https://openwebui.com/posts/3be427d9-766d-4e67-93e4-fab208b9340e)
+
+## Advanced Usage Features
+
+### Image-to-Video Generation
+You can provide an image for Omni to use as the starting frame or context for your video:
+- **Direct Upload**: Click the `+` attachment button in your OpenWebUI chat window to upload an image. The tool will automatically detect it and pass it to Gemini Omni.
+- **URL Link**: Paste a public URL of an image directly into your prompt. 
+
+### Video-to-Video Editing
+You can provide an existing video for Omni to edit (e.g. "replace the background", "make it look like a cartoon"):
+- **Direct Upload (Short videos)**: Attach a short video file in OpenWebUI.
+- **GCS URI (Long/Large videos)**: Since Vertex AI has strict payload limits for inline bytes, for larger videos, upload the video to a Google Cloud Storage bucket and provide the `gs://your-bucket-name/video.mp4` link in your chat prompt. The tool will seamlessly hand it off to Vertex AI!
