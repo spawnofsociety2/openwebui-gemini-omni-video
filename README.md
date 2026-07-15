@@ -74,3 +74,43 @@ You can provide an image for Omni to use as the starting frame or context for yo
 You can provide an existing video for Omni to edit (e.g. "replace the background", "make it look like a cartoon"):
 - **Direct Upload (Short videos)**: Attach a short video file in OpenWebUI.
 - **GCS URI (Long/Large videos)**: Since Vertex AI has strict payload limits for inline bytes, for larger videos, upload the video to a Google Cloud Storage bucket and provide the `gs://your-bucket-name/video.mp4` link in your chat prompt. The tool will seamlessly hand it off to Vertex AI!
+
+## 💡 Gemini Omni Flash Prompting Guide
+
+To get the most out of Gemini Omni Flash, here are a few tips and tricks straight from the official API documentation:
+
+### 🎬 Scene & Camera Control
+By default, Omni will try to create a video with a few different shots and cuts to craft a narrative.
+If you need a single scene, explicitly prompt for it using phrases like:
+- *"In a single unbroken scene"*
+- *"In a single continuous shot"*
+- *"No scene cuts"*
+
+### ✂️ Editing Best Practices
+Simple prompts work best for video editing. Overly descriptive prompts can lead to unintended changes across the whole video. 
+Always include **"Keep everything else the same"** to maintain visual consistency.
+* **Avoid**: "In the video of the man sitting on the sofa, please add a small black cat that runs from the right side..."
+* **Simplify**: "Add a cat that jumps onto his lap, he begins to pet it. Keep everything else the same."
+
+### 🎵 Audio Prompting
+By default, the model will generate an appropriate audio track. If you want something specific, just describe it!
+* *"Include calm background music"*
+* *"The video has a high energy techno beat"*
+
+### ⏱️ Timing Events
+You can prompt for things to happen at specific times using natural language or timecodes:
+* *"After 3 seconds, a woman enters the scene."*
+* *"Every 2s cut to a new frame."*
+* `[0-3s] A person is walking`
+* `[3-6s] They stop and turn around`
+
+### 🔤 Text in Videos
+Omni can render correct and readable text! Just define what it should say:
+* *"There is a street sign that says: 'Omni Flash'"*
+* *"One word on the screen at a time: 'did, you, know...' Each word appears for 1s. No dialogue."*
+
+### 🖼️ Image Roles (Advanced)
+If you provide multiple images in your prompt, you can use tags to tell the model exactly how to use them:
+- `<FIRST_FRAME>`: Uses the image as the exact starting frame of the video.
+- `<IMAGE_REF_0>`: Uses the first image as a reference (e.g. for character or style).
+*Example*: `[0-3s] A studio fashion sequence. Starting with woman <IMAGE_REF_0>, she is holding <IMAGE_REF_1>`
